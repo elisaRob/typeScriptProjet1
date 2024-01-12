@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier projet</title>
+    <script src="dist/main.js" defer></script>
+</head>
+<body>
+    <div class="containerPrincipal">
+        <form class="containerConvertisseurDevise">
+            <div class="containerMontant">
+                <label label="montant">Montant :</label>
+                <input type="number" id="montant"/>
+            </div>
+            <div class="containerDevise">
+                <label for="devise">Devise :</label>
+                <select class="listeDeroulanteDevise">
+                    <!-- <option value="dollar">Dollar - $</option>
+                    <option value="euro">Euro - €</option>
+                    <option value="livreSterling">Livre Sterling - £</option>
+                    <option value="yuan">Yuan - ¥</option> -->
+                </select>
+            </div>
+            <div class="deviseAConvertir">
+                <label>Devise à convertir :</label>
+                <select class="listeDeroulanteDeviseAConvertir">
+                    <!-- <option value="dollar">Dollar - $</option>
+                    <option value="euro">Euro - €</option>
+                    <option value="livreSterling">Livre Sterling - £</option>
+                    <option value="yuan">Yuan - ¥</option> -->
+                </select>
+            </div>
+        </form>
+        <div class="resultat">
+            <label >Résultat :</label>
+            <div class="aRemplir"></div>
+        </div>
+    </div> 
+</body>
+</html>
