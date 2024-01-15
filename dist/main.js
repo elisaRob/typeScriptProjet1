@@ -2,6 +2,7 @@
 const recuperationListeDeroulanteDevise = document.querySelector(".listeDeroulanteDevise");
 const recuperationListeDeroulanteDeviseAConvertir = document.querySelector(".listeDeroulanteDeviseAConvertir");
 const recuperationDeLinput = document.querySelector("#montant");
+const recuperationARemplirResultat = document.querySelector(".aRemplir");
 let inputMontant;
 let inputSelectPremier;
 let inputSelectDeuxieme;
@@ -42,15 +43,42 @@ function afficherLesDevises(listeDesDevises) {
 recuperationDeLinput.addEventListener("keyup", () => {
     inputMontant = +recuperationDeLinput.value;
 });
-recuperationListeDeroulanteDevise.addEventListener("change", () => {
+recuperationListeDeroulanteDevise.addEventListener("change", updateResultat);
+recuperationListeDeroulanteDeviseAConvertir.addEventListener("change", updateResultat);
+function updateResultat() {
     inputSelectPremier = recuperationListeDeroulanteDevise.value;
-});
-recuperationListeDeroulanteDeviseAConvertir.addEventListener("change", () => {
     inputSelectDeuxieme = recuperationListeDeroulanteDeviseAConvertir.value;
-});
-function calculResultat() {
+    // recuperationARemplirResultat.innerHTML=inputSelectPremier
+    recuperationARemplirResultat.innerHTML = `${calculResultat(inputSelectPremier, inputSelectDeuxieme)}`;
 }
+// function afficherResultat(){
+//     recuperationARemplirResultat.innerHTML=`${calculResultat()}`
+// }
+function calculResultat(in_inputSelectPremier, in_inputSelectDeuxieme) {
+    let recuperationDeLinputPourCalculTaux = Number(recuperationDeLinput.value);
+    let tauxDeLaDevise;
+    let tauxDeLaDeuxiemeDevise;
+    let resultat;
+    const deviseCorrespondante = devises.find(devise => devise.code === in_inputSelectPremier);
+    const deuxiemeDeviseCorrespondante = devises.find(devise => devise.code === in_inputSelectDeuxieme);
+    if (deviseCorrespondante) {
+        tauxDeLaDevise = deviseCorrespondante.taux;
+    }
+    if (deuxiemeDeviseCorrespondante) {
+        tauxDeLaDeuxiemeDevise = deuxiemeDeviseCorrespondante.taux;
+    }
+    if (typeof tauxDeLaDevise === "number" && typeof tauxDeLaDeuxiemeDevise === "number") {
+        resultat = (tauxDeLaDevise * recuperationDeLinputPourCalculTaux) / tauxDeLaDeuxiemeDevise;
+        resultat = parseFloat(resultat.toFixed(2));
+    }
+    if (resultat) {
+        return resultat;
+    }
+}
+//in_montant:number,in_deviseInitValue:string,in_deviseFinalValeur:string
+// function calculResultat(){
+// }
 // function obtenierDevise(){
-//     if(inputSelectPremier===devises.code)
+//     alert(premierListeDeroulante)
 // }
 //# sourceMappingURL=main.js.map
